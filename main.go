@@ -2,11 +2,19 @@ package main
 
 import (
 	"./mysort"
+	"fmt"
 )
 func main(){
-	data := mysort.PreData(10*10000)
+	len := 10*1000
+	data := mysort.PreData(len)
 
-	mysort.Bubble(data)
-	data = mysort.PreData(10000)
-	mysort.Quick(data)
+	d1:=make([]int,len)
+	copy(d1,data)
+	mysort.Bubble(d1)
+	fmt.Println(d1)
+
+	d2:=make([]int,len)
+	copy(d2,data)
+	mysort.Quick(d2)
+	fmt.Println(d2)
 }

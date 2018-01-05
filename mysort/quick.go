@@ -10,11 +10,11 @@ func quickSort(data []int,l,r int){
 	if l>=r{
 		return
 	}
-	base := data[l]
+	base := data[(l+r)/2]
 	i,j:=l,r
 	for i<j{
 		for ;i<j&&data[j]>=base;j--{}
-		for ;i<j&&data[i]<=base;i++{}
+		for ;i<j&&data[i]<base;i++{}
 		if i<j {
 			data[i],data[j] = data[j],data[i]
 		}
