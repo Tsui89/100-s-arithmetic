@@ -2,6 +2,6 @@ package timeCost
 
 import "time"
 
-func Cost(start time.Time)int{
-	return int(time.Since(start))
+func Cost(start time.Time)time.Duration{
+	return time.Since(start)
 }
