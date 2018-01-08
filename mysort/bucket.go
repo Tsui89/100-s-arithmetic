@@ -3,7 +3,7 @@ package mysort
 import (
 	"fmt"
 	"time"
-	"../timeCost"
+	"github.com/Tsui89/100-s-arithmetic/timeCost"
 )
 
 func max(data []int)int{
@@ -19,7 +19,8 @@ type bs struct {
 	count int
 }
 func Bucket(data []int)[]int{
-	defer fmt.Println("Bucket Sort: Used seconds ",timeCost.Cost(time.Now()))
+	t:=time.Now()
+	//defer fmt.Println("Bucket Sort: Used seconds ",timeCost.Cost(time.Now()))
 
 	b :=make([]bs,max(data)+1)
 
@@ -33,5 +34,6 @@ func Bucket(data []int)[]int{
 			r= append(r,i)
 		}
 	}
+	fmt.Println("Bucket Sort: Used seconds ",timeCost.Cost(t))
 	return r
 }

@@ -3,7 +3,7 @@ package mysort
 import (
 	"fmt"
 	"time"
-	"../timeCost"
+	"github.com/Tsui89/100-s-arithmetic/timeCost"
 )
 
 func quickSort(data []int,l,r int){
@@ -38,7 +38,9 @@ func quickSort(data []int,l,r int){
 
 }
 func Quick(data []int)[]int{
-	defer fmt.Println("Quick Sort: Used seconds ",timeCost.Cost(time.Now()))
+	t :=time.Now()
+	//defer fmt.Println("Quick Sort: Used seconds ",timeCost.Cost(t))
 	quickSort(data,0,len(data)-1)
+	fmt.Println("Quick Sort: Used seconds ",timeCost.Cost(t))
 	return data
 }
