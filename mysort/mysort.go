@@ -14,9 +14,8 @@ func PreData(len int)([]int){
 	return data
 }
 
-
 type Sort interface {
 	Len()int
-	Bigger(i,j int)(bool,error)
-	Swap(i,j int)error
+	Bigger(i,j int)(bool)
+	Swap(i,j int)
 }

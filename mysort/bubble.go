@@ -12,7 +12,7 @@ func Bubble(data Sort)Sort {
 	//defer fmt.Println("Bubble Sort: Used seconds ",timeCost.Cost(time.Now()))
 	for i:=0;i<data.Len();i++{
 		for j:=i+1;j<data.Len();j++{
-			if b,err:=data.Bigger(i,j);err==nil&&b==true{
+			if data.Bigger(i,j){
 				data.Swap(i,j)
 			}
 		}

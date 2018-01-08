@@ -4,59 +4,58 @@ import (
 	"github.com/Tsui89/100-s-arithmetic/mysort"
 	"sync"
 	"runtime"
-	"errors"
+	"log"
+	"os"
 )
 
-type sortData struct {
-	data []int
-}
+type sortData []int
+
 
 func (sd sortData)Len()int{
-	return len(sd.data)
+	return len(sd)
 }
 
-func (sd sortData)Bigger(i,j int)(bool,error){
-	if i>sd.Len() || j >sd.Len(){
-		return false,errors.New("out of range")
-	}
-	return sd.data[i]>sd.data[j],nil
+func (sd sortData)Bigger(i,j int)(bool){
+
+	return sd[i]>=sd[j]
 }
 
-func (sd sortData)Swap(i,j int)error{
-	if i>sd.Len() || j >sd.Len(){
-		return errors.New("out of range")
-	}
-	sd.data[i],sd.data[j] = sd.data[j],sd.data[i]
-	return nil
+func (sd sortData)Swap(i,j int){
+
+	sd[i],sd[j] = sd[j],sd[i]
 }
 
 func main(){
 	runtime.GOMAXPROCS(4)
-
+	logger := log.New(os.Stdout,"sort ",log.Ltime)
 	var w sync.WaitGroup
 	var sd1 sortData
 	var sd2 sortData
-	var sd3 sortData
+	//var sd3 sortData
 
-	length := 10*1000
+	length := 10*1
 	data := mysort.PreData(length)
-	sd1.data=data
-	sd2.data=data
-	sd3.data=data
 
+	sd1 = append(sd1,data...)
+	sd2 = append(sd2,data...)
+	//sd3 = append(sd1,data...)
 
 	w.Add(1)
 	go func() {
+		logger.Println(sd1)
 		mysort.Bubble(sd1)
+		logger.Println(sd1)
+		w.Done()
+	}()
+	w.Add(1)
+	go func() {
+		logger.Println(sd2)
+		mysort.Quick(sd2)
+		logger.Println(sd2)
 		w.Done()
 	}()
 
-	//w.Add(1)
-	//go func() {
-	//	mysort.Quick(sd2)
-	//	w.Done()
-	//}()
-	//
+	w.Wait()
 	//w.Add(1)
 	//go func() {
 	//	mysort.Bucket(sd3)
