@@ -7,13 +7,13 @@ import (
 )
 
 
-func Bubble(data []int)[]int  {
+func Bubble(data Sort)Sort {
 	t:=time.Now()
 	//defer fmt.Println("Bubble Sort: Used seconds ",timeCost.Cost(time.Now()))
-	for i:=0;i<len(data);i++{
-		for j:=i+1;j<len(data);j++{
-			if data[i] > data[j]{
-				data[i],data[j] = data[j],data[i]
+	for i:=0;i<data.Len();i++{
+		for j:=i+1;j<data.Len();j++{
+			if b,err:=data.Bigger(i,j);err==nil&&b==true{
+				data.Swap(i,j)
 			}
 		}
 	}
